@@ -13,7 +13,7 @@ public class Main {
         //welcome
         System.out.println("Get recommended three books that I have read!");
         System.out.println("What moods are you looking for?");
-        System.out.println ("(limit input to five words for best results)");
+        System.out.println ("(Limit input to three words for best results)");
 
         //read user input
         String moods = sc.nextLine();

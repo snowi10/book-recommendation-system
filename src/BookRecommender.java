@@ -23,7 +23,7 @@ public class BookRecommender {
         ArrayList<String> favoritesList = new ArrayList<>();
         ArrayList<ArrayList<String>> booksMoodsArray = new ArrayList<>();
         String[] bookMoodsList;
-        StringBuilder none = new StringBuilder("No books found for: ");
+        StringBuilder none = new StringBuilder("Unable to include: ");
 
         //traverse through list of books I've read
         for(int i = 1; i < booksList.size(); i++) {
@@ -104,7 +104,7 @@ public class BookRecommender {
                 if(!moodBoolean && !unusedMoods.contains(moodsInput)) {
                     unusedMoods.add(moodsInput);
 
-                    if(none.toString().equals("No books found for: ")) {
+                    if(none.toString().equals("Unable to include: ")) {
                         none.append(WordUtils.capitalize(moodsInput));
                     }
                     else {
@@ -115,8 +115,9 @@ public class BookRecommender {
                 }
             }
 
-            if(!none.toString().equals("No books found for: ")) {
-                System.out.println(none);
+
+            if(!none.toString().equals("Unable to include: ")) {
+                System.out.println("\n" + none);
             }
 
         }

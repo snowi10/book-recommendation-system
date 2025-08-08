@@ -80,7 +80,7 @@ public class FilterBooks {
 
 
         //print books that were removed
-
+        /*
         for(int i = 0; i < getRemovedBooksList().size(); i++) {
             Books formatRemovedBooks = new Books();
             formatRemovedBooks.stringBooks(getRemovedBooksList().get(i)[0], getRemovedBooksList().get(i)[1], getRemovedBooksList().get(i)[3], getRemovedMoodsList().get(i));
@@ -89,15 +89,13 @@ public class FilterBooks {
 
         System.out.print("\n");
 
-
-
-
+         */
 
         return booksRecommended;
     }
 
     //update removed items
-    public static void updateRemovedItems(ArrayList<String[]> booksRecommended, ArrayList<Integer> moodCounterList, ArrayList<Float> starsList, ArrayList<String> favoritesList, ArrayList<ArrayList<String>> booksMoodsArray, int num) {
+    private static void updateRemovedItems(ArrayList<String[]> booksRecommended, ArrayList<Integer> moodCounterList, ArrayList<Float> starsList, ArrayList<String> favoritesList, ArrayList<ArrayList<String>> booksMoodsArray, int num) {
 
        getRemovedBooksList().add(booksRecommended.get(num));
        booksRecommended.remove(num);
@@ -115,7 +113,7 @@ public class FilterBooks {
        booksMoodsArray.remove(num);
     }
 
-    public static void addRemovedItems(ArrayList<String[]> booksRecommended, ArrayList<Integer> moodCounterList, ArrayList<Float> starsList, ArrayList<String> favoritesList, ArrayList<ArrayList<String>> booksMoodsArray, int num) {
+    private static void addRemovedItems(ArrayList<String[]> booksRecommended, ArrayList<Integer> moodCounterList, ArrayList<Float> starsList, ArrayList<String> favoritesList, ArrayList<ArrayList<String>> booksMoodsArray, int num) {
         booksRecommended.add(getRemovedBooksList().get(num));
         getRemovedBooksList().remove(num);
 
@@ -134,7 +132,7 @@ public class FilterBooks {
     }
 
     //sort books by star rating (lowest to highest)
-    public void sortStars() {
+    private void sortStars() {
         for(int i = 0; i < getRemovedStarsList().size(); i++) {
             for(int j = i + 1; j < getRemovedStarsList().size(); j++) {
                 if(getRemovedStarsList().get(i) > getRemovedStarsList().get(j)) {
@@ -149,7 +147,7 @@ public class FilterBooks {
     }
 
     //sort books by mood count (lowest to highest)
-    public void sortMoods() {
+    private void sortMoods() {
         for(int i = 0; i < getRemovedMoodCounterList().size(); i++) {
             for(int j = i + 1; j < getRemovedMoodCounterList().size(); j++) {
                 if(getRemovedMoodCounterList().get(i) > getRemovedMoodCounterList().get(j)) {
@@ -164,7 +162,7 @@ public class FilterBooks {
     }
 
     //filter by mood count
-    public void filterMoods(ArrayList<String[]> booksRecommended, ArrayList<Integer> moodCounterList, ArrayList<Float> starsList, ArrayList<String> favoritesList, ArrayList<ArrayList<String>> booksMoodsList) {
+    private void filterMoods(ArrayList<String[]> booksRecommended, ArrayList<Integer> moodCounterList, ArrayList<Float> starsList, ArrayList<String> favoritesList, ArrayList<ArrayList<String>> booksMoodsList) {
         //sort books recommended by mood count (highest to lowest)
         for(int i = 0; i < moodCounterList.size(); i++) {
             for(int j = i + 1; j < moodCounterList.size(); j++) {
@@ -195,7 +193,7 @@ public class FilterBooks {
     }
 
     //filter by star rating
-    public void filterStars(ArrayList<String[]> booksRecommended, ArrayList<Integer> moodCounterList, ArrayList<Float> starsList, ArrayList<String> favoritesList, ArrayList<ArrayList<String>> booksMoodsArray ) {
+    private void filterStars(ArrayList<String[]> booksRecommended, ArrayList<Integer> moodCounterList, ArrayList<Float> starsList, ArrayList<String> favoritesList, ArrayList<ArrayList<String>> booksMoodsArray ) {
 
         //remove all books that are lower than the highest rated book
         for(int i = starsList.size() - 1; i > -1; i--) {
@@ -209,7 +207,7 @@ public class FilterBooks {
     }
 
     //filter by "favorites" tag
-    public void filterFavorites(ArrayList<String[]> booksRecommended, ArrayList<Integer> moodCounterList, ArrayList<Float> starsList, ArrayList<String> favoritesList, ArrayList<ArrayList<String>> booksMoodsArray) {
+    private void filterFavorites(ArrayList<String[]> booksRecommended, ArrayList<Integer> moodCounterList, ArrayList<Float> starsList, ArrayList<String> favoritesList, ArrayList<ArrayList<String>> booksMoodsArray) {
 
         for(int i = 0; i < favoritesList.size(); i++) {
             String[] tags = favoritesList.get(i).split(", ");
@@ -234,7 +232,7 @@ public class FilterBooks {
     }
 
     //choose one book for each mood if applicable
-    public void chooseEach(ArrayList<String[]> booksRecommended, ArrayList<Integer> moodCounterList, ArrayList<Float> starsList, ArrayList<String> favoritesList, ArrayList<ArrayList<String>> booksMoodsArray, ArrayList<String> arrayMoods) {
+    private void chooseEach(ArrayList<String[]> booksRecommended, ArrayList<Integer> moodCounterList, ArrayList<Float> starsList, ArrayList<String> favoritesList, ArrayList<ArrayList<String>> booksMoodsArray, ArrayList<String> arrayMoods) {
         int counter = 0;
 
         //match each mood input by user to one book
@@ -274,7 +272,7 @@ public class FilterBooks {
     }
 
     //choose three books out of the list of books recommended
-    public void chooseThree(ArrayList<String[]> booksRecommended, ArrayList<Integer> moodCounterList, ArrayList<Float> starsList, ArrayList<String> favoritesList, ArrayList<ArrayList<String>> booksMoodsArray) {
+    private void chooseThree(ArrayList<String[]> booksRecommended, ArrayList<Integer> moodCounterList, ArrayList<Float> starsList, ArrayList<String> favoritesList, ArrayList<ArrayList<String>> booksMoodsArray) {
 
         Random rand = new Random();
         int randNum = rand.nextInt(0, booksRecommended.size());
@@ -283,7 +281,7 @@ public class FilterBooks {
     }
 
     //choose more books
-    public void chooseMore(ArrayList<String[]> booksRecommended, ArrayList<Integer> moodCounterList, ArrayList<Float> starsList, ArrayList<String> favoritesList, ArrayList<ArrayList<String>> booksMoodsArray) {
+    private void chooseMore(ArrayList<String[]> booksRecommended, ArrayList<Integer> moodCounterList, ArrayList<Float> starsList, ArrayList<String> favoritesList, ArrayList<ArrayList<String>> booksMoodsArray) {
 
 
         //when there was only one book that was removed
@@ -308,8 +306,9 @@ public class FilterBooks {
     }
 
     //make sure each mood input by user is applied in the recommended list if applicable, regardless of ranking
-    public void chooseOther(ArrayList<String[]> booksRecommended, ArrayList<Integer> moodCounterList, ArrayList<Float> starsList, ArrayList<String> favoritesList, ArrayList<ArrayList<String>> booksMoodsArray, ArrayList<String> arrayMoods) {
+    private void chooseOther(ArrayList<String[]> booksRecommended, ArrayList<Integer> moodCounterList, ArrayList<Float> starsList, ArrayList<String> favoritesList, ArrayList<ArrayList<String>> booksMoodsArray, ArrayList<String> arrayMoods) {
         int counter = booksMoodsArray.size() - 1;
+
 
         //check to see if the moods input by user is in the recommended list
         for(String inputMoods : arrayMoods) {
@@ -328,7 +327,7 @@ public class FilterBooks {
 
             //if one or more of the moods input by user is not in the recommended list
             //add a book for each of the moods if there is a book applicable
-            if(!moods && counter > 0) {
+            if(!moods && counter > -1) {
 
                 search:
                 for(int i = getRemovedMoodsList().size() - 1; i > -1 ; i--) {
@@ -346,7 +345,5 @@ public class FilterBooks {
             }
 
         }
-
-
     }
 }
